@@ -1,0 +1,61 @@
+
+.header-wrapper{
+    background-color: rgb(226, 159, 159);
+    position: relative;
+    height: 30vh;
+    width: 100%;
+}
+
+.edit-btn {
+    margin-left: auto;
+    margin: 10px;
+    position: absolute;
+    right: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.img-wrapper {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+
+.avatar{
+    position: relative;
+    top: 10px;
+    width: 150px;
+}
+
+.info{
+    margin-top: 10px;
+    padding-left: 10px;
+
+}
+
+.name{
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+}
+.age,
+.about{
+    color: white;
+    opacity: 0.7;
+    font-size: 20px;
+}

@@ -1,0 +1,82 @@
+.edit-modal {
+    background-color: hsl(0, 0%, 0%);
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 90vh;
+    color: white;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+
+.modal-header{
+    position: relative;
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+
+}
+
+.modal-title{
+    margin: auto;
+}
+
+.save-btn{
+    right: 0;
+    position: absolute;
+    padding: 5px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+.input-info-wrapper{
+    color: white;
+    margin: 0 10px;
+}
+
+.input-info {
+    color: aliceblue;
+    margin-top: 20px;
+    margin-bottom: 35px;
+    padding: 5px;
+    height: 30px;
+    width: 100%;
+    background-color: #5B5B5B;
+    border-radius: 4px;
+}
+
+.input-info-about{
+    color: aliceblue;
+    margin-top: 20px;
+    margin-bottom: 35px;
+    width: 100%;
+    height: 50px;
+    background-color: #5B5B5B;
+    border-radius: 4px;
+}
+
+.input-profile-avatar-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.profile-picture-selector{
+    background-color: white;
+    width: 137px;
+    height: 137px;
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    
+
+}
+
+.input-profile-picture{
+    width: 125px;
+    margin: auto;
+}
