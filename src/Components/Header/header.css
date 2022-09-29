@@ -1,6 +1,6 @@
 
 .header-wrapper{
-    background-color: rgb(226, 159, 159);
+    background-image: linear-gradient(#F1AB27 20%, white 100%);
     position: relative;
     height: 30vh;
     width: 100%;
@@ -16,6 +16,7 @@
     border: 2px solid white;
     background-color: transparent;
     color: white;
+    cursor: pointer;
 }
 
 .user {

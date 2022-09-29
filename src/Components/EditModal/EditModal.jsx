@@ -1,29 +1,26 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import './edit.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
-import { update } from '../../redux/userSlice'
+import './edit.css'
+import { updateUser } from '../../redux/requestApi'
+import Input from '../InputInfo/input'
 
 function EditModal(props) {
   const { setEdit } = props
-  const user = useSelector(state => state.user)
+  const user = useSelector((state) => state.user)
+  const [selectIdx, setSelectIdx] = useState('')
+  const picColorRef = useRef()
   const dispatch = useDispatch()
   const [name, setName] = useState('Canh')
   const [age, setAge] = useState('20')
   const [about, setAbout] = useState('I am a Fullstack Developer')
-  const [avatUrl, setAvaUrl] = useState(
+  const [avaUrl, setAvaUrl] = useState(
     'https://www.pngarts.com/files/11/Avatar-PNG-Pic.png',
   )
-    
-  
-  const userUpdate = {
-    name: name,
-    age: age,
-    about: about,
-    avatarUrl: avatUrl
-  }
+  const [theme, setTheme] = useState(user.theme)
 
-  
   const avatarUrl = [
     'https://www.pngarts.com/files/11/Avatar-PNG-Pic.png',
     'https://www.pngarts.com/files/11/Avatar-Transparent-Image.png',
@@ -35,13 +32,30 @@ function EditModal(props) {
     'https://www.pngarts.com/files/11/Avatar-PNG-Download-Image.png',
   ]
 
+  const handleClickCloseBtn = (e) => {
+    e.preventDefault()
+    setEdit(false)
+  }
 
+  const handleClickPic = (e, index) => {
+    // e.target.parentElement.style.backgroundColor = '#6f5353'
+
+    setSelectIdx(index)
+    setAvaUrl(e.target.src)
+    // console.log(selectIdx, index);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setEdit(false)
-    dispatch(update(userUpdate))
-
+    const userUpdated = {
+      name: name,
+      age: age,
+      about: about,
+      avatarUrl: avaUrl,
+      theme: theme,
+    }
+    updateUser(userUpdated, dispatch)
   }
 
   return (
@@ -50,42 +64,53 @@ function EditModal(props) {
         <div className="edit-modal">
           <header className="modal-header">
             <p className="modal-title">Edit Profile </p>
-            <button className="save-btn">save</button>
+                <button className="close_modal" onClick={handleClickCloseBtn}>
+                    <FontAwesomeIcon className="close_modal-btn" icon={faXmark}></FontAwesomeIcon>
+                </button>
           </header>
 
           <div className="input-info-wrapper">
-            <label>Name</label>
-            <input
-              className="input-info"
+            <Input
+              name="Name"
+              classStyle={'input-info'}
               type="text"
               onChange={(e) => setName(e.target.value)}
               placeholder={user.name}
             />
 
-            <label>Age</label>
-            <input
-              className="input-info"
+            <Input
+              name="Age"
+              classStyle={'input-info'}
               type="text"
               onChange={(e) => setAge(e.target.value)}
               placeholder={user.age}
             />
 
-            <label >About</label>
-            <textarea
-              className="input-info-about"
+            <Input
+              name="About"
+              classStyle={'input-info'}
               type="text"
-              placeholder={user.about}
               onChange={(e) => setAbout(e.target.value)}
+              placeholder={user.about}
+              textarea={true}
             />
 
-            <label>Profile Picture</label>
+            <label style={{ display: 'block', marginRight: '20px' }}>
+              Profile Picture
+            </label>
             <div className="input-profile-avatar-container">
               {avatarUrl.map((url, index) => {
                 return (
-                  <div className="profile-picture-selector" key={index}>
+                  <div
+                    ref={picColorRef}
+                    className={`profile-picture-selector ${
+                      selectIdx === index ? 'active' : ''
+                    }`}
+                    key={index}
+                  >
                     <img
                       className="input-profile-picture"
-                      onClick={(e) => setAvaUrl(e.target.src)}
+                      onClick={(e) => handleClickPic(e, index)}
                       src={url}
                       alt="pic"
                     />
@@ -93,6 +118,16 @@ function EditModal(props) {
                 )
               })}
             </div>
+
+            <Input
+              name="Background color"
+              type="color"
+              placeholder={theme}
+              onChange={(e) => setTheme(e.target.value)}
+            />
+          </div>
+          <div className="btn-wrapper">
+            <button className="save-btn">save</button>
           </div>
         </div>
       </form>

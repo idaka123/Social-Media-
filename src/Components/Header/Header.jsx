@@ -1,18 +1,23 @@
-import './header.css'
-import { useState } from 'react';
-import EditModal from '../EditModal/EditModal';
+// import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-function Header() {
-    const [edit, setEdit] = useState(false)
+import './header.css'
+
+
+
+function Header(props) {
+    const { edit, setEdit ,setModalPost } = props
     const user = useSelector(state => state.user)
 
+    const handleClickEdit = () => {
+          setEdit(!edit)
+          setModalPost(false)
+    }
   return (
     <header>
-        { edit && <EditModal setEdit={setEdit}> </EditModal>}
-
-      <div className="header-wrapper">
-        <button className="edit-btn" onClick={() => {setEdit(!edit)}}>edit</button>
+      
+      <div className="header-wrapper" style={{ backgroundImage: `linear-gradient(${user.theme} 20%, white 100%)` }}>
+        <button className="edit-btn" onClick={handleClickEdit}>edit</button>
 
 
         <div className="user">
@@ -32,6 +37,8 @@ function Header() {
             </div>
         </div>
       </div>
+
+
     </header>
   )
 }
