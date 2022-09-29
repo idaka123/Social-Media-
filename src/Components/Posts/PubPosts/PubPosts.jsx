@@ -1,5 +1,8 @@
-import './PubPosts.css'
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+
+import './PubPosts.css'
+import { faComment, faFaceSmile, faHeart } from '@fortawesome/free-regular-svg-icons';
 
 
 const PubPost = (props) => {
@@ -14,13 +17,35 @@ const PubPost = (props) => {
             </header>
 
             {/* <div className="PubPost_content"> */}
-                <img src={post.postImg} alt="" className="PubPost_content-img" />            
+              {post.postImg && <img src={post.postImg} alt="" className="PubPost_content-img" />}  
             {/* </div> */}
 
             <div className='PubPost_footer'>
-                <p className="PubPost_footer-des">
-                    {post.postText}
-                </p>
+
+                <div className="PubPost_footer-des-block">
+                    <p className="PubPost_footer-des">
+                        {post.postText}
+                    </p>
+                </div>
+                <div className="PubPost_footer-comment-block-wrapper">
+                    <div className="PubPost_footer-comment-block">
+                        <FontAwesomeIcon className='PubPost_footer-comment-icon' icon={faFaceSmile}/>
+
+                            <input type="text" placeholder='Add comment here...' className="PubPost_footer-comment-input" />
+
+                        <button className="PubPost_footer-comment-btn">Post</button>
+                    </div>
+
+                </div>
+
+               
+                <div className="PubPost_footer-icon-block">
+                    <FontAwesomeIcon className="PubPost_footer-icon heart" icon={faHeart} />
+                    <FontAwesomeIcon className="PubPost_footer-icon comment" icon={faComment} />
+                    {/* <FontAwesomeIcon className="PubPost_footer-icon-heart" icon={faHeart} /> */}
+                </div>
+               
+
             </div>
         </div>
     );
