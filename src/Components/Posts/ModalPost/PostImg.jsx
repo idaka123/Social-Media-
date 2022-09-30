@@ -6,8 +6,8 @@ const PostImg = (props) => {
     const { setImportImg, setPostImg } = props
     const [imgUploaded, setImgUploaded] = useState()
 
-    const handleClickCloseBtn = async (e) => {
-        await e.stopPropagation()
+    const handleClickCloseBtn = (e) => {
+        // await e.stopPropagation()
 
         // set state img upload btn 
         setImportImg(false)

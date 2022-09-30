@@ -14,7 +14,8 @@ function EditModal(props) {
   const picColorRef = useRef()
   const dispatch = useDispatch()
   const [name, setName] = useState('Canh')
-  const [age, setAge] = useState('20')
+  const [liveIn, setLiveIn] = useState('TP HCM')
+  const [comeFrom, setComeFrom] = useState('Da Lat')
   const [about, setAbout] = useState('I am a Fullstack Developer')
   const [avaUrl, setAvaUrl] = useState(
     'https://www.pngarts.com/files/11/Avatar-PNG-Pic.png',
@@ -50,7 +51,8 @@ function EditModal(props) {
     setEdit(false)
     const userUpdated = {
       name: name,
-      age: age,
+      liveIn: liveIn,
+      comeFrom: comeFrom,
       about: about,
       avatarUrl: avaUrl,
       theme: theme,
@@ -59,8 +61,8 @@ function EditModal(props) {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <div >
+      <form className='edit-modal-layout' onSubmit={handleSubmit}>
         <div className="edit-modal">
           <header className="modal-header">
             <p className="modal-title">Edit Profile </p>
@@ -79,11 +81,19 @@ function EditModal(props) {
             />
 
             <Input
-              name="Age"
+              name="Live"
               classStyle={'input-info'}
               type="text"
-              onChange={(e) => setAge(e.target.value)}
-              placeholder={user.age}
+              onChange={(e) => setLiveIn(e.target.value)}
+              placeholder={user.liveIn}
+            />
+
+            <Input
+              name="Come from"
+              classStyle={'input-info'}
+              type="text"
+              onChange={(e) => setComeFrom(e.target.value)}
+              placeholder={user.comeFrom}
             />
 
             <Input
@@ -126,12 +136,12 @@ function EditModal(props) {
               onChange={(e) => setTheme(e.target.value)}
             />
           </div>
-          <div className="btn-wrapper">
+          <div className="modal_edit-btn-wrapper">
             <button className="save-btn">save</button>
           </div>
         </div>
       </form>
-    </>
+    </div>
   )
 }
 

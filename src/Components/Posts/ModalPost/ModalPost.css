@@ -1,9 +1,30 @@
+.modal-post-layout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(16 16 16 / 20%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+}
+
 .modal-post{
-    height: 70vh;
-    width: 100%;
+
     background-color: #242526;
     border-radius: 10px;
 
+
+    top: 20vh;
+    height: 68vh;
+    max-width: 468px;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
 }
 
 .modal_header-wrapper{
@@ -101,9 +122,6 @@ background-color: rgb(126 122 130 );;
 
 }
 
-.modal-post{
-    position: relative;
-}
 
 .modal-posts-input-title{
     color: white;

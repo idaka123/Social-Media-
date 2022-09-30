@@ -4,7 +4,8 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: {
         name: 'Canh',
-        age: '20',
+        liveIn: 'HCM city',
+        comeFrom: 'Da Lat',
         about: 'I\'m a fullstack developer',
         avatarUrl: 'https://www.pngarts.com/files/11/Avatar-Transparent-Image.png',
         theme: '#F1AB27',
@@ -22,7 +23,8 @@ export const userSlice = createSlice({
         },
         updateSuccess(state, action){
             state.name = action.payload.name
-            state.age = action.payload.age
+            state.liveIn = action.payload.liveIn
+            state.comeFrom = action.payload.comeFrom
             state.about = action.payload.about
             state.avatarUrl = action.payload.avatarUrl
             state.theme = action.payload.theme

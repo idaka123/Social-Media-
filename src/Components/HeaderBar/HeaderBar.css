@@ -1,0 +1,19 @@
+.header_bar{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fafafa;
+    padding: 10px 16px;
+}
+
+.header-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-logo-link{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+}

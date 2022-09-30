@@ -14,8 +14,14 @@
     border-top-right-radius: 10px;
     
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 10px 10px;
+}
+
+.PubPost_header-user-info{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 .PubPost_header-avatar{
@@ -27,6 +33,12 @@
 .PubPost_header-name{
     font-weight: 600;
     margin-left: 10px;
+}
+
+.PubPost_header-option-icon{
+    font-size: 20px;
+    margin-right: 6px;
+    cursor: pointer;
 }
 
 .PubPost_content{
@@ -104,9 +116,16 @@
     outline: none;
     border: none;
     background: transparent;
-    color: #358bcc;
+    /* color: #358bcc; */
+    color: #0091ff;
     font-weight: 800;
     cursor: pointer;
     font-size: 15px;
+    margin-right: 6px;
 
 }
+
+input:not(:placeholder-shown) ~ .PubPost_footer-comment-btn{
+    color: #358bcc;
+}
+

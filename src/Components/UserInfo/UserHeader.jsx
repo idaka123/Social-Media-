@@ -1,7 +1,10 @@
 // import { useState } from 'react';
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
 
-import './header.css'
+import './User.css'
+import UserAbout from './UserAbout';
 
 
 
@@ -17,8 +20,7 @@ function Header(props) {
     <header>
       
       <div className="header-wrapper" style={{ backgroundImage: `linear-gradient(${user.theme} 20%, white 100%)` }}>
-        <button className="edit-btn" onClick={handleClickEdit}>edit</button>
-
+      
 
         <div className="user">
             <div className="img-wrapper">
@@ -28,16 +30,22 @@ function Header(props) {
                     alt="avatar"
                 />
             </div>
-
-            <div className="info">
-                <div className="name">{user.name}</div>
-                <div className="age">{user.age}</div>
-                <div className="about">{user.about}</div>
-
-            </div>
         </div>
+
       </div>
 
+      <div className="user-control">
+          <div className="user-info">
+            <div className="name">{user.name}</div>
+            <button className="edit-btn" onClick={handleClickEdit}>
+              <FontAwesomeIcon className='edit-btn-icon' icon={faPenToSquare}/>
+
+              Edit Profile</button>
+          </div>
+            
+      </div>
+
+      <UserAbout />
 
     </header>
   )
