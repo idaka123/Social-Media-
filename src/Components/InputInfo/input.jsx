@@ -1,4 +1,4 @@
-import '../EditModal/EditModal'
+import './InputInfo.css'
 
 function Input(props) {
     const { name, onChange, placeholder, classStyle, type, textarea } = props

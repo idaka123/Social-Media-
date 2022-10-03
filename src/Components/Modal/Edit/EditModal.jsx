@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import './edit.css'
-import { updateUser } from '../../redux/requestApi'
-import Input from '../InputInfo/input'
+import { updateUser } from '../../../redux/requestApi'
+import Input from '../../InputInfo/Input'
 
 function EditModal(props) {
   const { setEdit } = props
@@ -20,7 +20,7 @@ function EditModal(props) {
   const [avaUrl, setAvaUrl] = useState(
     'https://www.pngarts.com/files/11/Avatar-PNG-Pic.png',
   )
-  const [theme, setTheme] = useState(user.theme)
+  const [theme, setTheme] = useState(user.info.theme)
 
   const avatarUrl = [
     'https://www.pngarts.com/files/11/Avatar-PNG-Pic.png',
@@ -77,7 +77,7 @@ function EditModal(props) {
               classStyle={'input-info'}
               type="text"
               onChange={(e) => setName(e.target.value)}
-              placeholder={user.name}
+              placeholder={user.info.name}
             />
 
             <Input
@@ -85,7 +85,7 @@ function EditModal(props) {
               classStyle={'input-info'}
               type="text"
               onChange={(e) => setLiveIn(e.target.value)}
-              placeholder={user.liveIn}
+              placeholder={user.info.liveIn}
             />
 
             <Input
@@ -93,7 +93,7 @@ function EditModal(props) {
               classStyle={'input-info'}
               type="text"
               onChange={(e) => setComeFrom(e.target.value)}
-              placeholder={user.comeFrom}
+              placeholder={user.info.comeFrom}
             />
 
             <Input
@@ -101,7 +101,7 @@ function EditModal(props) {
               classStyle={'input-info'}
               type="text"
               onChange={(e) => setAbout(e.target.value)}
-              placeholder={user.about}
+              placeholder={user.info.about}
               textarea={true}
             />
 

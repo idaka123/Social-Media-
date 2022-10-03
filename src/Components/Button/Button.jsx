@@ -1,7 +1,7 @@
 
 import './Button.css'
 
-function Button({children, btnType, id }) {
+function Button({children, btnType, id, width, onClick }) {
     
     // const { primary } = props
     // const classStyle = {
@@ -10,7 +10,7 @@ function Button({children, btnType, id }) {
     // }
     return ( 
 
-            <button id={id} className={`btn-${btnType}`}>{children}</button>
+            <button id={id} style={{width: width}} onClick={onClick} className={` Button btn-${btnType}`}>{children}</button>
 
     );
 }

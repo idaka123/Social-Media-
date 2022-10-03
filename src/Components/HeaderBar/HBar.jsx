@@ -2,9 +2,8 @@
 import Button from "../Button/Button";
 import './HeaderBar.css'
 
-const HeaderBar = () => {
-
-    let userState = false
+const HBar = (props) => {
+    const { setLogModal, setRegisterModal } = props
 
     return ( 
         <div className="header_bar">
@@ -14,8 +13,14 @@ const HeaderBar = () => {
             </div>
  
             <div className="header_bar-user_authem">
-                <Button id={'register-btn'} btnType='default'>Join now</Button>
-                <Button id={'login-btn'} btnType='primary'>Login</Button>
+                <Button id={'register-btn'} 
+                    onClick={() => {setRegisterModal(true); setLogModal(false)}} btnType='default'>
+                        Join now
+                </Button>
+                <Button id={'login-btn'} 
+                    onClick={() => {setRegisterModal(false); setLogModal(true)}} btnType='primary'>
+                        Login
+                </Button>
             </div>
             
 
@@ -23,4 +28,4 @@ const HeaderBar = () => {
      );
 }
  
-export default HeaderBar;
+export default HBar;

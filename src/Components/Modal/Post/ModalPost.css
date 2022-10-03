@@ -5,11 +5,12 @@
     width: 100vw;
     height: 100vh;
     background: rgb(16 16 16 / 20%);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 10;
 
 }
 
@@ -17,11 +18,9 @@
 
     background-color: #242526;
     border-radius: 10px;
-
-
     top: 20vh;
     height: 68vh;
-    max-width: 468px;
+    max-width: 500px;
     width: 100%;
     position: fixed;
     z-index: 10;
@@ -109,7 +108,7 @@ background-color: rgb(126 122 130 );;
     outline: none;
     border-radius: 10px;
     border: none;
-    margin-top: 29px;
+    margin: 20px 0 8px;
     cursor: pointer;
 }
 .modal-submit-btn-wrapper:hover{
@@ -212,6 +211,8 @@ background-color: rgb(126 122 130 );;
     left: 0;
     right: 0;
     background-color: #242526;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .img-preview-update-wrapper{

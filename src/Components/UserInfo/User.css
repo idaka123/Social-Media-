@@ -11,6 +11,7 @@
     display: flex;
     justify-content: center;
     height: 16vh;
+    margin-top: 55px;
 }
 
 .user_btn{
@@ -71,7 +72,7 @@
 }
 
 
-.avatar{
+.user_avatar{
     position: relative;
     top: 10px;
     width: var(--avatar-size);

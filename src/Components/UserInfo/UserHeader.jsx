@@ -19,14 +19,14 @@ function Header(props) {
   return (
     <header>
       
-      <div className="header-wrapper" style={{ backgroundImage: `linear-gradient(${user.theme} 20%, white 100%)` }}>
+      <div className="header-wrapper" style={{ backgroundImage: `linear-gradient(${user.info.theme} 20%, white 100%)` }}>
       
 
         <div className="user">
             <div className="img-wrapper">
                 <img
-                    className="avatar"
-                    src={user.avatarUrl}
+                    className="user_avatar"
+                    src={user.info.avatarUrl}
                     alt="avatar"
                 />
             </div>
@@ -36,7 +36,7 @@ function Header(props) {
 
       <div className="user-control">
           <div className="user-info">
-            <div className="name">{user.name}</div>
+            <div className="name">{user.info.name}</div>
             <button className="edit-btn" onClick={handleClickEdit}>
               <FontAwesomeIcon className='edit-btn-icon' icon={faPenToSquare}/>
 
@@ -45,7 +45,8 @@ function Header(props) {
             
       </div>
 
-      <UserAbout />
+
+      {(user.info.about || user.info.liveIn || user.info.comeFrom )&& <UserAbout />}
 
     </header>
   )

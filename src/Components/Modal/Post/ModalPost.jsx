@@ -37,8 +37,8 @@ const ModalPost = (props) => {
     }
 
 return (  
-
-        <div className='modal-post-layout'>
+        <>
+         <div className='modal-post-layout'></div>
         <form className='modal-post' onSubmit={handleSubmit}>
             {/* header */}
             <header className="modal_header-wrapper">
@@ -80,14 +80,16 @@ return (
 
                 <div className="modal-submit">
                     <button className="modal-submit-btn-wrapper" 
-                        style={{backgroundImage: `linear-gradient(${user.theme} 50%, white 100%)` }}>
+                        style={{backgroundImage: `linear-gradient(${user.info.theme} 50%, white 100%)` }}>
                         <p className="modal-submit-btn">Post</p>
 
                     </button>
                 </div>
             </footer>
         </form>
-        </div>
+        
+        </>
+       
         
     );
 }

@@ -4,6 +4,7 @@ import postReducer from './postSlice'
 
 export default configureStore({
     reducer: {
+        
         user: userReducer,
         post: postReducer
     }

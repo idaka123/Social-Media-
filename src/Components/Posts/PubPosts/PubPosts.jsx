@@ -24,8 +24,8 @@ const PubPost = (props) => {
 
             <header className="PubPost_header">
                 <div className="PubPost_header-user-info">
-                    <img className="PubPost_header-avatar" src={user.avatarUrl} alt='avatar'/>
-                    <p className="PubPost_header-name">{user.name}</p>
+                    <img className="PubPost_header-avatar" src={user.info.avatarUrl} alt='avatar'/>
+                    <p className="PubPost_header-name">{user.info.name}</p>
                 </div>
                 
                 <FontAwesomeIcon className='PubPost_header-option-icon' icon={faEllipsis} onClick={handleOptionClick}/>
