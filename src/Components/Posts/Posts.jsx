@@ -6,6 +6,7 @@ import Avatar from '../Avatar/Avatar'
 
 const Posts = (props) => {
     const user = useSelector(state => state.auth.login.currentUser)
+    const accessToken = user?.accessToken
     const { setModalPost} = props
 
     const handleInputClick = () => {
@@ -13,10 +14,13 @@ const Posts = (props) => {
     }
 
     return ( 
+
+        
         <div className="posts-content">
 
             
-            <div className="posts-input-wrapper">
+            {   accessToken &&                
+                <div className="posts-input-wrapper">
                 {/* Header input */}
                 <div className="posts-input-header">
                     
@@ -37,7 +41,7 @@ const Posts = (props) => {
                    
                 </div>
 
-            </div>
+            </div>}
 
         </div>
      );

@@ -6,13 +6,13 @@ import Profile from './Profile'
 const ProfileWrap = async () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const id = '633ab7d97684910fd1cc7de0'
-    await getUser(dispatch, id, navigate)
-    const user = await useSelector(state => state.auth.login?.currentUser)
-    console.log(user);
+    // const id = '633ab7d97684910fd1cc7de0'
+    // await getUser(dispatch, id, navigate)
+    // const user = await useSelector(state => state.auth.login?.currentUser)
+
     return ( 
         <>
-            <Profile user={user}/>
+            <Profile/>
         </>
      );
 }

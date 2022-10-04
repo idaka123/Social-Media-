@@ -7,7 +7,7 @@ const HLoggedIn = () => {
     const user = useSelector(state => state.auth.login?.currentUser)
     const [popper, setPopper] = useState(false)
 
-    console.log(user);
+
 
     return (
         <div className="header_bar logged">

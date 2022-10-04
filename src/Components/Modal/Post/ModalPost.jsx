@@ -7,10 +7,12 @@ import { useState } from 'react'
 import './ModalPost.css'
 import PostImg from './PostImg'
 import { createPost } from '../../../redux/postSlice'
+import { Post } from '../../../redux/requestApi'
 
 const ModalPost = (props) => { 
     const [importImg, setImportImg] = useState(false)
-    const user = useSelector(state => state.auth.user.currentUser)
+    const user = useSelector(state => state.auth.login.currentUser)
+    const userId = user?._id
     const {setModalPost} = props
     const dispatch = useDispatch()
     const [postText, setPostText] = useState('')
@@ -25,14 +27,13 @@ const ModalPost = (props) => {
         e.preventDefault()
         setModalPost(false)
         const newPost = {
-            // userName: 'Canh',
-            // userAvatar: 'https://www.pngarts.com/files/11/Avatar-Transparent-Image.png',
             postText: postText,
             postImg: postImg,
         }
 
-        console.log(newPost);
-        dispatch(createPost(newPost))
+        // console.log(newPost);
+
+        Post(dispatch, userId, newPost)
 
     }
 

@@ -1,4 +1,5 @@
 // import { updateError, updateStart, updateSuccess, } from "./userSlice"
+import {createPostStart, createPost, createPostError} from './postSlice'
 import { loginStart, loginError, loginSuccess,
         registerStart,registerError, registerSuccess,  
         getUserStart, getUserSuccess, getUserError,
@@ -68,5 +69,19 @@ export const getUser = async (dispatch, id, navigate) => {
     }
     catch{
         dispatch(getUserError())
+    }
+}
+
+
+// POST 
+export const Post = async (dispatch, userId, newPost) => {
+    // dispatch(createPostStart())
+    try{
+        const res = await axios.post('/post/createPost/'+ userId, newPost)
+        console.log(res.data);
+        dispatch(createPost(res.data))
+    }
+    catch{
+        // dispatch(createPostError())
     }
 }

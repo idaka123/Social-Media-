@@ -17,7 +17,7 @@ const Popper = () => {
 
     const handleLogOut = (e) => {
         e.preventDefault()
-        console.log(id);
+
         LogOut(dispatch, id, accessToken, navigate)
     }
 

@@ -14,22 +14,21 @@ import { getUser } from '../../redux/requestApi';
 
 
 const Profile = (props) => {
-    const { user } = props
+
     // const pending = useSelector(state => state.auth.user.info.pending)
     // const error = useSelector(state => state.auth.user.info.error)
     
+    const user = useSelector(state => state.auth.login.currentUser)
     const posts = useSelector(state => state.post.posts)
-  
+    console.log(posts);
     const [edit, setEdit] = useState(false)
     const [modalPost, setModalPost] = useState(false)
 
-
     
-
     return ( 
         <>
          {/* profile */}
-            <Header edit={edit} setEdit={setEdit} user={user} setModalPost={setModalPost}></Header>
+            <Header edit={edit} setEdit={setEdit} setModalPost={setModalPost}></Header>
             { edit && <EditModal setEdit={setEdit} />}
             {/* { pending && <p>loading....</p> }
             { !pending && error && <p>Error</p> } */}
@@ -38,7 +37,12 @@ const Profile = (props) => {
                 {modalPost? <ModalPost setModalPost={setModalPost}/>: <Posts setModalPost={setModalPost}/>}
                 
             { 
-                posts.slice(1).map((post, idx) => {return <PubPost key={idx} post={post}/> } )
+               posts.slice(1).map((post, idx) => {
+                    
+                if(user?._id === post.userId)
+                 return (<PubPost key={idx} post={post}/>)
+
+            } )
             
             }
             </div>

@@ -4,21 +4,31 @@ export const postSlice = createSlice({
     name: 'post',
     initialState:{
         posts: [
-            {
-                // userName: '',
-                // userAvatar: '',
-                postText: '',
-                postImg: '',
-            },
-        ]
+                {
+                    postText: '32',
+                    postImg: '321',
+                    userId: '312'
+                },
+            ]
+        
     },
     reducers: {
-        createPost( state, action){
-            state.posts = [...state.posts, action.payload] 
-        }
+        // createPostStart(state) {
+        //     state.posts.isPending = true
+        //     state.posts.isError = false
+        // },
+        createPost(state, action){
+            state.posts = [...state.posts, action.payload]
+            // state.posts.isPending = false
+            // state.posts.isError = false
+        },
+        // createPostError(state) {
+        //     state.posts.isPending = false
+        //     state.posts.isError = true
+        // },
     }
 
 }) 
 
-export const { createPost } = postSlice.actions
+export const { createPostStart, createPost, createPostError } = postSlice.actions
 export default postSlice.reducer
