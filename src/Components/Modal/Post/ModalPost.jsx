@@ -10,7 +10,7 @@ import { createPost } from '../../../redux/postSlice'
 
 const ModalPost = (props) => { 
     const [importImg, setImportImg] = useState(false)
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state.auth.user.currentUser)
     const {setModalPost} = props
     const dispatch = useDispatch()
     const [postText, setPostText] = useState('')

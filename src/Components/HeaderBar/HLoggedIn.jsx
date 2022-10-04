@@ -4,8 +4,10 @@ import './HeaderBar.css'
 import Popper from './Popper';
 
 const HLoggedIn = () => {
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state.auth.login?.currentUser)
     const [popper, setPopper] = useState(false)
+
+    console.log(user);
 
     return (
         <div className="header_bar logged">
@@ -15,7 +17,7 @@ const HLoggedIn = () => {
 
             <div className="header_bar-avatar-wrapper">
                 <img 
-                    src={user.info.avatarUrl} 
+                    src={user.info?.avatarUrl} 
                     className="header_bar-avatar" alt="" 
                     onClick={() => setPopper(!popper)} />
 

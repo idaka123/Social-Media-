@@ -11,7 +11,7 @@ const PubPost = (props) => {
     const { post, idx } = props
     const [modalOption, setModalOption] = useState(false)
 
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state.auth.user.currentUser)
 
     const handleOptionClick = () => {
 

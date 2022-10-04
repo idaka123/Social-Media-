@@ -9,8 +9,8 @@ import UserAbout from './UserAbout';
 
 
 function Header(props) {
-    const { edit, setEdit ,setModalPost } = props
-    const user = useSelector(state => state.user)
+    const { edit, setEdit ,setModalPost} = props
+    const user = useSelector(state => state.auth.login.currentUser)
 
     const handleClickEdit = () => {
           setEdit(!edit)
@@ -37,10 +37,12 @@ function Header(props) {
       <div className="user-control">
           <div className="user-info">
             <div className="name">{user.info.name}</div>
-            <button className="edit-btn" onClick={handleClickEdit}>
+            
+          {user.accessToken && <button className="edit-btn" onClick={handleClickEdit}>
               <FontAwesomeIcon className='edit-btn-icon' icon={faPenToSquare}/>
+              Edit Profile
+            </button>}
 
-              Edit Profile</button>
           </div>
             
       </div>

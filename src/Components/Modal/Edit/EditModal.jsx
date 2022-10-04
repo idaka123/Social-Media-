@@ -1,15 +1,15 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import './edit.css'
-import { updateUser } from '../../../redux/requestApi'
+import { updateUserInfo } from '../../../redux/requestApi'
 import Input from '../../InputInfo/Input'
 
 function EditModal(props) {
   const { setEdit } = props
-  const user = useSelector((state) => state.user)
+  const user = useSelector((state) => state.auth.login.currentUser)
   const [selectIdx, setSelectIdx] = useState('')
   const picColorRef = useRef()
   const dispatch = useDispatch()
@@ -46,6 +46,8 @@ function EditModal(props) {
     // console.log(selectIdx, index);
   }
 
+ 
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setEdit(false)
@@ -57,8 +59,14 @@ function EditModal(props) {
       avatarUrl: avaUrl,
       theme: theme,
     }
-    updateUser(userUpdated, dispatch)
+    if(user?.accessToken){
+      updateUserInfo(userUpdated, dispatch, user?._id, user?.accessToken)
+    }
   }
+
+  useEffect(() => {
+
+  },[])
 
   return (
     <div >

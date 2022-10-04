@@ -89,6 +89,10 @@
     align-items: center;
     padding: 8px 14px;
     transition: background-color ease-in-out 200ms;
+    border-top: 1px solid rgb(240, 240, 240);
+    border: none;
+    width: 100%;
+    background-color: white;
     
 }
 

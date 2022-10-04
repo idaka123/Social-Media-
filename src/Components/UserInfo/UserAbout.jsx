@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import './User.css'
 
 const UserAbout = () => {
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state.auth.login.currentUser)
 
     return ( 
         <div className='user-about-box-wrapper'>

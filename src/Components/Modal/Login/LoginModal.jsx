@@ -1,27 +1,35 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux'
-// import { useNavigate } from "react-router-dom";
+import { useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom";
 
 import './Login.css'
 import { CloseBtn } from '../../Icon';
 import InputBar from '../../InputBar/InputBar';
 import Button from '../../Button/Button';
 import { login } from '../../../redux/requestApi'
+import { useEffect } from 'react';
 
 const LoginModal = (props) => {
     const {setLogModal, setRegisterModal} = props
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
+    // const AuthemModal = createContext()
+    // const setLogModal = useContext(AuthemModal)
+    
+ 
 
-    const handleSubmitLog = (e) => {
+    const handleSubmitLog = async (e) => {
         e.preventDefault()
-        const newUser = {
+        const newUser  = {
             username: username,
             password: password
         }
-        login(newUser, dispatch)
+        await login(newUser, dispatch, navigate)
+        await setLogModal(false)
+
+        
     }
 
     return ( 
