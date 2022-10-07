@@ -10,23 +10,28 @@ import Posts from '../../Components/Posts/Posts';
 import ModalPost from '../../Components/Modal/Post/ModalPost';
 import PubPost from '../../Components/Posts/PubPosts/PubPosts'
 import { getUser } from '../../redux/requestApi';
+import PostOption from '../../Components/Modal/PostOption/PostOption';
 
 
 
 const Profile = (props) => {
-
+    const { modalPost, setModalPost } = props
     // const pending = useSelector(state => state.auth.user.info.pending)
     // const error = useSelector(state => state.auth.user.info.error)
     
     const user = useSelector(state => state.auth.login.currentUser)
-    const posts = useSelector(state => state.post.posts)
-    console.log(posts);
-    const [edit, setEdit] = useState(false)
-    const [modalPost, setModalPost] = useState(false)
+    let posts = useSelector(state => state.post.posts)
 
+    const [edit, setEdit] = useState(false)
     
+
+    const newPosts = [...posts].reverse()
+    // newPosts.splice(0,1)
+    console.log(newPosts);
+
     return ( 
         <>
+            
          {/* profile */}
             <Header edit={edit} setEdit={setEdit} setModalPost={setModalPost}></Header>
             { edit && <EditModal setEdit={setEdit} />}
@@ -37,10 +42,11 @@ const Profile = (props) => {
                 {modalPost? <ModalPost setModalPost={setModalPost}/>: <Posts setModalPost={setModalPost}/>}
                 
             { 
-               posts.slice(1).map((post, idx) => {
+               newPosts.map((post, idx) => {
+                    const postId = post._id
                     
-                if(user?._id === post.userId)
-                 return (<PubPost key={idx} post={post}/>)
+                if(user?._id === post.userId && post.userId !== undefined)
+                 return (<PubPost key={idx} post={post} postId={postId} />)
 
             } )
             

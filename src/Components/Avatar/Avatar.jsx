@@ -1,10 +1,10 @@
 import './Avatar.css'
 
 const Avatar = (props) => {
-    const { src, classStyles } = props
+    const { src, classStyles, width } = props
     return (  
         <div className={`avatar-wrapper ${classStyles}`}>
-                <img src={src} className="avatar"alt="" />
+                <img src={src} style={{width: width}} className="avatar" alt="" />
         </div>
     );
 }

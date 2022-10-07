@@ -8,7 +8,8 @@ import { LogOut } from "../../redux/requestApi";
 
 import Avatar from '../Avatar/Avatar'
 
-const Popper = () => {
+const Popper = (props) => {
+    const { setPopper } = props
     const user = useSelector(state => state.auth.login.currentUser)
     const accessToken = user?.accessToken
     const id = user?._id
@@ -21,12 +22,21 @@ const Popper = () => {
         LogOut(dispatch, id, accessToken, navigate)
     }
 
+    // const handleClickOutside = (e) => {
+    //     const { target } = e
+    // //    if (!this.wrapperRef.current.contains(target)) {
+    // //      alert('you clicked outside!')
+    // //    }
+    //     console.log(target)
+    // }
+
+
     return ( 
         <div className="popper">
 
             {/* item */}
 
-            <Link to={`/Profile`} className="popper-item" >
+            <Link to={`/Profile`} className="popper-item" onClick={() => setPopper(false)} >
                 <div className="popper-item-icon-wrapper">
                    <Avatar src={user.info.avatarUrl} />
                 </div>

@@ -21,7 +21,7 @@ const HLoggedIn = () => {
                     className="header_bar-avatar" alt="" 
                     onClick={() => setPopper(!popper)} />
 
-                { popper && <Popper />}
+                { popper && <Popper setPopper={setPopper}/>}
 
 
             </div>

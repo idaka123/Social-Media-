@@ -13,13 +13,11 @@ function EditModal(props) {
   const [selectIdx, setSelectIdx] = useState('')
   const picColorRef = useRef()
   const dispatch = useDispatch()
-  const [name, setName] = useState('Canh')
-  const [liveIn, setLiveIn] = useState('TP HCM')
-  const [comeFrom, setComeFrom] = useState('Da Lat')
-  const [about, setAbout] = useState('I am a Fullstack Developer')
-  const [avaUrl, setAvaUrl] = useState(
-    'https://www.pngarts.com/files/11/Avatar-PNG-Pic.png',
-  )
+  const [name, setName] = useState(user.info.name)
+  const [liveIn, setLiveIn] = useState(user.info.liveIn)
+  const [comeFrom, setComeFrom] = useState(user.info.comeFrom)
+  const [about, setAbout] = useState(user.info.about)
+  const [avaUrl, setAvaUrl] = useState(user.info.avatarUrl)
   const [theme, setTheme] = useState(user.info.theme)
 
   const avatarUrl = [
@@ -46,7 +44,9 @@ function EditModal(props) {
     // console.log(selectIdx, index);
   }
 
- 
+  const handleClickOutside = () => {
+    setEdit(false)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -70,7 +70,8 @@ function EditModal(props) {
 
   return (
     <div >
-      <form className='edit-modal-layout' onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
+        <div className='edit-modal-layout' onClick={handleClickOutside}></div>
         <div className="edit-modal">
           <header className="modal-header">
             <p className="modal-title">Edit Profile </p>

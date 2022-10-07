@@ -1,0 +1,32 @@
+/* phone */
+@media screen and (max-width: 1024px) {
+    .home{
+       
+    }
+}
+
+/* PC */
+@media screen and (min-width: 1025px) {
+    .home{
+        
+    }
+    .home-users{
+        margin-left: 32px;
+    }
+    .home-users-title{
+        color: rgb(142, 142, 142);
+    }
+
+    .home-users-list{
+        padding: 8px 0;
+    }
+
+    
+}
+
+.home{
+    display: flex;
+    justify-content: center;
+    margin-top: calc(var(--header-bar-height) + 27px);
+}
+

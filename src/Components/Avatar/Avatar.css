@@ -3,7 +3,7 @@
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    position: absolute;
+    /* position: absolute; */
     /* right: 10px; */
     display: flex;
     justify-content: center;

@@ -1,10 +1,13 @@
 // import { updateError, updateStart, updateSuccess, } from "./userSlice"
-import {createPostStart, createPost, createPostError} from './postSlice'
+import {createPostStart, createPost, createPostError 
+            ,destroyPost} from './postSlice'
 import { loginStart, loginError, loginSuccess,
         registerStart,registerError, registerSuccess,  
         getUserStart, getUserSuccess, getUserError,
         updateUserStart, updateUserSuccess, updateUserError,
         logOutStart, logOutSuccess, logOutError, } from './authSlice'
+import { getAllUsers } from './userSlice'
+
 import axios from 'axios'
 
 export const updateUserInfo = async (userUpdated, dispatch, id, accessToken) => {
@@ -42,6 +45,7 @@ export const login = async (user, dispatch, navigate) => {
     }
     catch{
         dispatch(loginError())
+        console.log('username or password is not correct');
     }
 }
 
@@ -78,10 +82,34 @@ export const Post = async (dispatch, userId, newPost) => {
     // dispatch(createPostStart())
     try{
         const res = await axios.post('/post/createPost/'+ userId, newPost)
-        console.log(res.data);
-        dispatch(createPost(res.data))
+        console.log(newPost);
+        await dispatch(createPost(res.data))
     }
     catch{
         // dispatch(createPostError())
+    }
+}
+
+export const deletePost = async( dispatch, postId) => {
+    try{
+        const id = postId
+        await axios.delete('/post/deletePost/'+ id)
+        dispatch(destroyPost(id))
+
+    }
+    catch{
+
+    }
+} 
+
+export const AllUsers = async (dispatch) => {
+    try{
+        const res = await axios.get('/user/getAllUsers')
+        console.log('dispatch in redux', res.data)
+        
+        dispatch(getAllUsers(res.data))
+    }
+    catch{
+
     }
 }

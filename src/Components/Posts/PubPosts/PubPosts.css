@@ -1,10 +1,14 @@
 .PubPost{
     height: auto;
-    width: 100%;
     border: 1px solid rgb(187 187 187);
     border-radius: 10px;
-    margin-top: 17px;
-    max-width: 468px;
+    
+    width: var(--pub_post-width);
+}
+
+
+.PubPost + .PubPost {
+    margin-top: 13px;
 }
 
 .PubPost_header{
@@ -59,15 +63,22 @@
 
 .PubPost_footer-icon-block{
     display: flex;
-    padding: 0 10px 16px;
+    padding: 0 3px;
     justify-content: flex-start;
 }
 .PubPost_footer-icon{
     font-size: 25px;
+    padding: 8px;
+    cursor: pointer;
+    /* transition: all linear .4s; */
 }
 
-.PubPost_footer-icon.heart{
-    padding-right: 10px;
+/* .PubPost_footer-icon:hover{
+    opacity: 0.5;
+} */
+
+.PubPost_footer-icon.heart.active{
+    color: #ED4956;
 }
 
 .PubPost_footer-icon.comment{
@@ -83,7 +94,7 @@
 }
 
 .PubPost_footer-des{
-    padding: 10px 10px 28px;
+    padding: 5px 10px 15px;
 }
 
 .PubPost_footer-comment-block-wrapper{

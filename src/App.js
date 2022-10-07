@@ -18,6 +18,7 @@ function App() {
   const getUser = useSelector(state => state.auth.user?.getUser)
   const [logModal, setLogModal] = useState(false)
   const [registerModal, setRegisterModal] = useState(false)
+  const [modalPost, setModalPost] = useState(false)
   const id = '633ab7d97684910fd1cc7de0'
 
   
@@ -45,8 +46,10 @@ function App() {
 
 
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path={`/Profile`} element={<Profile />} />
+            <Route path='/'          
+              element={<Home modalPost={modalPost} setModalPost={setModalPost}/>} />
+            <Route path={`/Profile`} 
+              element={<Profile modalPost={modalPost} setModalPost={setModalPost}/>} />
   
           </Routes>
 

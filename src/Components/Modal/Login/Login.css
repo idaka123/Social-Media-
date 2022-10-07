@@ -57,7 +57,7 @@
 }
 
 .Login_modal-body{
-    padding: 20px;
+    padding: 20px 20px 0;
 }
 
 .Login_modal-icon-box{
@@ -68,4 +68,15 @@
 
 .Login_modal-login_btn {
     
+}
+
+.Login_modal-notify{
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+    padding: 0px 22px 21px;
+}
+
+.Login_modal-notify-content{
+    color: #ff3434;
 }

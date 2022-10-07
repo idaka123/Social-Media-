@@ -15,6 +15,7 @@ const LoginModal = (props) => {
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const state = useSelector(state => state.auth.login)
     // const AuthemModal = createContext()
     // const setLogModal = useContext(AuthemModal)
     
@@ -27,7 +28,8 @@ const LoginModal = (props) => {
             password: password
         }
         await login(newUser, dispatch, navigate)
-        await setLogModal(false)
+        
+        state.isError && await setLogModal(false)
 
         
     }
@@ -56,6 +58,10 @@ const LoginModal = (props) => {
                             width='100%' 
                             type='password'/>
                     </div>
+
+                    {state.isError && <div className="Login_modal-notify">
+                        <p className="Login_modal-notify-content">username or password is not correct</p>
+                    </div>}
 
                     <div className="Login_modal-icon-box">
                         <Button width={'100%'} btnType={'primary'}>Login</Button>

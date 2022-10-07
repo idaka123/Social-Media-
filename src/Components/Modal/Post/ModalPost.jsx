@@ -13,6 +13,8 @@ const ModalPost = (props) => {
     const [importImg, setImportImg] = useState(false)
     const user = useSelector(state => state.auth.login.currentUser)
     const userId = user?._id
+    const avatarUrl = user?.info.avatarUrl
+    const name = user?.info.name
     const {setModalPost} = props
     const dispatch = useDispatch()
     const [postText, setPostText] = useState('')
@@ -23,15 +25,21 @@ const ModalPost = (props) => {
         setModalPost(false)
     }
 
+    const handleClickOutside = () => {
+        setModalPost(false)
+    }
+
     const handleSubmit = (e) =>{
         e.preventDefault()
         setModalPost(false)
         const newPost = {
             postText: postText,
             postImg: postImg,
-        }
+            userId: userId,
+            name: name,
+            avatarUrl: avatarUrl,
 
-        // console.log(newPost);
+        }
 
         Post(dispatch, userId, newPost)
 
@@ -39,9 +47,10 @@ const ModalPost = (props) => {
 
 return (  
         <>
-         <div className='modal-post-layout'></div>
+       
         <form className='modal-post' onSubmit={handleSubmit}>
             {/* header */}
+            <div className='modal-post-layout' onClick={handleClickOutside}></div>
             <header className="modal_header-wrapper">
                 <div className="modal_header-title">
                     Create Post
