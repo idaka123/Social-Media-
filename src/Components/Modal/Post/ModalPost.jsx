@@ -2,20 +2,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { faImage} from '@fortawesome/free-regular-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 
 import './ModalPost.css'
 import PostImg from './PostImg'
 import { createPost } from '../../../redux/postSlice'
 import { Post } from '../../../redux/requestApi'
+import { UserContext } from '../../../App'
 
 const ModalPost = (props) => { 
+    const { modalPost, setModalPost} = props
     const [importImg, setImportImg] = useState(false)
-    const user = useSelector(state => state.auth.login.currentUser)
+    const { user} = useContext(UserContext)
     const userId = user?._id
     const avatarUrl = user?.info.avatarUrl
     const name = user?.info.name
-    const {setModalPost} = props
     const dispatch = useDispatch()
     const [postText, setPostText] = useState('')
     const [postImg, setPostImg] = useState('')
@@ -32,23 +33,27 @@ const ModalPost = (props) => {
     const handleSubmit = (e) =>{
         e.preventDefault()
         setModalPost(false)
+        // console.log(postImg);
+        
+        var formData = new FormData();
+        formData.append("file", postImg);
+        
         const newPost = {
             postText: postText,
-            postImg: postImg,
             userId: userId,
             name: name,
             avatarUrl: avatarUrl,
 
         }
 
-        Post(dispatch, userId, newPost)
+        Post(dispatch, userId, newPost, formData)
 
     }
 
 return (  
         <>
        
-        <form className='modal-post' onSubmit={handleSubmit}>
+        <form className='modal-post' name='file' onSubmit={handleSubmit} contenttype='multipart/form-data' >
             {/* header */}
             <div className='modal-post-layout' onClick={handleClickOutside}></div>
             <header className="modal_header-wrapper">

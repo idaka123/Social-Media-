@@ -51,6 +51,8 @@
 
 .PubPost_content-img{
     width: 100%;
+    height: 506px;
+    object-fit: cover;
 }
 
 .PubPost_footer {
@@ -95,6 +97,8 @@
 
 .PubPost_footer-des{
     padding: 5px 10px 15px;
+    background-color: #FFFF;
+
 }
 
 .PubPost_footer-comment-block-wrapper{

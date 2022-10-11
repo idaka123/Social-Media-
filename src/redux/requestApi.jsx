@@ -1,12 +1,16 @@
 // import { updateError, updateStart, updateSuccess, } from "./userSlice"
-import {createPostStart, createPost, createPostError 
-            ,destroyPost} from './postSlice'
-import { loginStart, loginError, loginSuccess,
+import {
+        createPostStart, createPost, createPostError, 
+        deleteStart, deleteError, destroyPost,} from './postSlice'
+import { 
+        loginStart, loginError, loginSuccess,
         registerStart,registerError, registerSuccess,  
         getUserStart, getUserSuccess, getUserError,
         updateUserStart, updateUserSuccess, updateUserError,
         logOutStart, logOutSuccess, logOutError, } from './authSlice'
-import { getAllUsers } from './userSlice'
+import {
+        getAllStart, getAll, getAllError,
+        searchUserSuccess, deleteUserSuccess } from './userSlice'
 
 import axios from 'axios'
 
@@ -36,12 +40,14 @@ export const register = async (user, dispatch) => {
     }
 }
 
-export const login = async (user, dispatch, navigate) => {
+export const login = async (res, dispatch, navigate) => {
     dispatch(loginStart())
+    console.log('logging');
     try{
-        const res = await axios.post('/authem/login', user)
+       
         dispatch(loginSuccess(res.data))
-        navigate('/')
+        console.log('logging success');
+        return true
     }
     catch{
         dispatch(loginError())
@@ -64,12 +70,12 @@ export const LogOut = async (dispatch, id, accessToken, navigate) => {
     }
 }
 
-export const getUser = async (dispatch, id, navigate) => {
+export const getUser = async (dispatch, id) => {
     dispatch(getUserStart())
     try{
         const res = await axios.get('/user/getUser'+ id)
         dispatch(getUserSuccess(res.data))
-        navigate(`/Profile/${id}`)
+        // navigate(`/Profile/${id}`)
     }
     catch{
         dispatch(getUserError())
@@ -78,38 +84,72 @@ export const getUser = async (dispatch, id, navigate) => {
 
 
 // POST 
-export const Post = async (dispatch, userId, newPost) => {
+export const Post = async (dispatch, userId, newPost, formData) => {
     // dispatch(createPostStart())
     try{
+    
         const res = await axios.post('/post/createPost/'+ userId, newPost)
-        console.log(newPost);
-        await dispatch(createPost(res.data))
+
+        const resFile = await axios.post(`/file/upload/${userId}/${res.data._id}`,formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+        })
+
+        const newForm = {...res.data, ...resFile.data}
+        console.log(newForm);
+
+        await dispatch(createPost(newForm))
     }
     catch{
         // dispatch(createPostError())
     }
 }
 
-export const deletePost = async( dispatch, postId) => {
+export const deletePost = async( dispatch, postId, userId, postUserId) => {
+    dispatch(deleteStart())
     try{
-        const id = postId
-        await axios.delete('/post/deletePost/'+ id)
-        dispatch(destroyPost(id))
+        // const id = { userId, postId}
+
+        // console.log(userId, '   --------    ', postUserId);
+        await axios.delete(`/post/deletePost/${userId}/${postId}/${postUserId}` )
+        dispatch(destroyPost(postId))
 
     }
     catch{
-
+        dispatch(deleteError())
+        console.log('delete error');
     }
 } 
 
 export const AllUsers = async (dispatch) => {
+    dispatch(getAllStart())
     try{
-        const res = await axios.get('/user/getAllUsers')
-        console.log('dispatch in redux', res.data)
+        const res = await axios.get('/user/getAll')
+        // console.log('dispatch in redux', res.data)
         
-        dispatch(getAllUsers(res.data))
+        dispatch(getAll(res.data))
     }
     catch{
+        dispatch(getAllError())
+    }
+}
 
+
+export const storageSearchUser = async (dispatch, storage) => {
+    console.log(storage);
+    try {
+        dispatch(searchUserSuccess(storage))
+
+    } catch (error) {
+        console.log('storage failure', error);
+    }
+}
+
+export const deleteStorage = async (dispatch, username) => {
+    try {
+        dispatch(deleteUserSuccess(username))
+    } catch (error) {
+        console.log('delelte failure', error);
     }
 }

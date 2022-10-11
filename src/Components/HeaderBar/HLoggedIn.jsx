@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import SearchBar from '../SearchBar/SearchBar';
 import './HeaderBar.css'
 import Popper from './Popper';
 
@@ -10,10 +11,13 @@ const HLoggedIn = () => {
 
 
     return (
-        <div className="header_bar logged">
+        <div className="header_bar">
             <div className="header-logo ">
                 <a href="/" className="header-logo-link" style={{letterSpacing: '3px'}}>Home</a>
+
+                <SearchBar />
             </div>
+
 
             <div className="header_bar-avatar-wrapper">
                 <img 

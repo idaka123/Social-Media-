@@ -1,52 +1,43 @@
 
 
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 
 import EditModal from '../../Components/Modal/Edit/EditModal'
 import './Profile.css';
 import Header from '../../Components/UserInfo/UserHeader';
 import Posts from '../../Components/Posts/Posts';
 import ModalPost from '../../Components/Modal/Post/ModalPost';
-import PubPost from '../../Components/Posts/PubPosts/PubPosts'
-import { getUser } from '../../redux/requestApi';
-import PostOption from '../../Components/Modal/PostOption/PostOption';
+import PubPost from '../../Components/PubPosts/PubPosts'
+import { useContext } from 'react';
+import { UserContext } from '../../App';
+
 
 
 
 const Profile = (props) => {
     const { modalPost, setModalPost } = props
-    // const pending = useSelector(state => state.auth.user.info.pending)
-    // const error = useSelector(state => state.auth.user.info.error)
-    
-    const user = useSelector(state => state.auth.login.currentUser)
-    let posts = useSelector(state => state.post.posts)
-
+    let postsOption = useSelector(state => state.post)
     const [edit, setEdit] = useState(false)
-    
+    const { user } = useContext(UserContext)
+    const newPosts = [...postsOption.posts].reverse()
 
-    const newPosts = [...posts].reverse()
-    // newPosts.splice(0,1)
-    console.log(newPosts);
 
     return ( 
         <>
-            
+
          {/* profile */}
-            <Header edit={edit} setEdit={setEdit} setModalPost={setModalPost}></Header>
+            <Header edit={edit} setEdit={setEdit} ></Header>
             { edit && <EditModal setEdit={setEdit} />}
-            {/* { pending && <p>loading....</p> }
-            { !pending && error && <p>Error</p> } */}
 
             <div className='grid'>
-                {modalPost? <ModalPost setModalPost={setModalPost}/>: <Posts setModalPost={setModalPost}/>}
+                {modalPost? <ModalPost modalPost={modalPost} setModalPost={setModalPost}/>: <Posts modalPost={modalPost} setModalPost={setModalPost} />}
                 
             { 
                newPosts.map((post, idx) => {
-                    const postId = post._id
-                    
+
                 if(user?._id === post.userId && post.userId !== undefined)
-                 return (<PubPost key={idx} post={post} postId={postId} />)
+                 return (<PubPost key={idx} postsOption={postsOption} post={post}/>)
 
             } )
             

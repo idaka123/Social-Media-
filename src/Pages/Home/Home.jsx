@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Avatar from "../../Components/Avatar/Avatar";
 import ModalPost from "../../Components/Modal/Post/ModalPost";
-import PubPost from "../../Components/Posts/PubPosts/PubPosts";
+import PubPost from "../../Components/PubPosts/PubPosts";
 import UserItem from "../../Components/UserItem/UserItem";
 import { AllUsers } from "../../redux/requestApi";
 import './Home.css'
 
 const Home = (props) => {
-    const { modalPost, setModalPost } = props
-    const posts = useSelector(state => state.post.posts)
+    const { modalPost, setModalPost, users  } = props
+    const postsOption = useSelector(state => state.post)
     const dispatch = useDispatch()
-    const users = useSelector(state => state.user.allUser)
+    
 
     
-    const newPostList = [...posts].reverse()
+    const newPostList = [...postsOption.posts].reverse()
     const newUserList = [...users].reverse()
 
     // const [userList, setUserList] =useState([])
@@ -36,8 +36,8 @@ const Home = (props) => {
                 
                 { 
                    newPostList.map((post, idx) => {
-                        const postId = post._id
-                     return (<PubPost key={idx} post={post} postId={postId} />)
+                      
+                     return (<PubPost key={idx} postsOption={postsOption} post={post} home={true}/>)
     
                 } )
                 
@@ -51,6 +51,7 @@ const Home = (props) => {
                     {
                         newUserList.map((user,idx) => {
                             return <UserItem 
+                                        user={user}
                                         key={idx}
                                         name={user.info.name} 
                                         avatarUrl={user.info.avatarUrl}

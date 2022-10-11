@@ -36,7 +36,7 @@ const Popper = (props) => {
 
             {/* item */}
 
-            <Link to={`/Profile`} className="popper-item" onClick={() => setPopper(false)} >
+            <Link to={`/Profile/${id}`} className="popper-item" onClick={() => setPopper(false)} >
                 <div className="popper-item-icon-wrapper">
                    <Avatar src={user.info.avatarUrl} />
                 </div>

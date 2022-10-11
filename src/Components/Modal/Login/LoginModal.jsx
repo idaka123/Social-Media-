@@ -8,18 +8,18 @@ import InputBar from '../../InputBar/InputBar';
 import Button from '../../Button/Button';
 import { login } from '../../../redux/requestApi'
 import { useEffect } from 'react';
+import axios from 'axios';
 
 const LoginModal = (props) => {
     const {setLogModal, setRegisterModal} = props
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
+    const [state, setState] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const state = useSelector(state => state.auth.login)
+    // const state = useSelector(state => state.auth.login)
     // const AuthemModal = createContext()
     // const setLogModal = useContext(AuthemModal)
-    
- 
 
     const handleSubmitLog = async (e) => {
         e.preventDefault()
@@ -27,11 +27,21 @@ const LoginModal = (props) => {
             username: username,
             password: password
         }
-        await login(newUser, dispatch, navigate)
-        
-        state.isError && await setLogModal(false)
+        await axios.post('/authem/login', newUser)
+        .then((res, error) => {
+            setLogModal(false)
+            login(res, dispatch, navigate)
+            setState(false)
+        })
+        .catch()
 
+
+    
+        if(state) {
         
+        }
+        console.log('set modal',state);
+
     }
 
     return ( 
@@ -45,7 +55,6 @@ const LoginModal = (props) => {
                         <CloseBtn 
                             classStyle={'Login_modal-close_btn'} 
                             onClick={() => setLogModal(false)}/>
-
                     </header>
                     <div className="Login_modal-body">
                         <InputBar 
@@ -59,7 +68,7 @@ const LoginModal = (props) => {
                             type='password'/>
                     </div>
 
-                    {state.isError && <div className="Login_modal-notify">
+                    {!state && <div className="Login_modal-notify">
                         <p className="Login_modal-notify-content">username or password is not correct</p>
                     </div>}
 
@@ -70,10 +79,6 @@ const LoginModal = (props) => {
                 </form>
             </div>
             
-
-               
-
-           
         </div>
     );
 }

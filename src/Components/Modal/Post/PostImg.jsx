@@ -21,7 +21,7 @@ const PostImg = (props) => {
         // set state for image preview
         setImgUploaded(file)
         // console.log(file.preview);
-        await setPostImg(file.preview)
+        await setPostImg(file)
 
     }
 

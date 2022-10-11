@@ -2,10 +2,10 @@ import Avatar from "../Avatar/Avatar";
 import './UserItem.css'
 
 const UserItem = (props) => {
-    const { name, avatarUrl} = props
+    const { name, avatarUrl, user} = props
 
     return ( 
-        <div className="home-users-item">
+        <a href={`/Profile/${user._id}`} className="home-users-item">
             <div className="home-users-item-info">
                 <Avatar
                     classStyles="home-users-item-info-avatar" 
@@ -17,7 +17,7 @@ const UserItem = (props) => {
 
         <div className="follow-btn"><strong>Follow</strong></div>
 
-    </div>
+    </a>
 
      );
 }

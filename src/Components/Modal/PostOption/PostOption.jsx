@@ -1,14 +1,19 @@
-import { useDispatch } from 'react-redux'
+import { useContext } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { UserContext } from '../../../App'
 import { deletePost } from '../../../redux/requestApi'
 import './PostOption.css'
 
 const PostOption = (props) => {
-    const { setModalOption, postId } = props
+    const { setModalOption, post } = props
+    // const { user } = useContext(UserContext)
+    const user = useSelector(state => state.auth.login.currentUser)
     const dispatch = useDispatch()
+
 
     const handleDelete = (e) => {
         e.preventDefault()
-        deletePost(dispatch, postId)
+        deletePost(dispatch, post._id, user._id, post.userId)
         setModalOption(false)
     }
 
@@ -24,7 +29,7 @@ const PostOption = (props) => {
         <div className="post_option">
             <div className="post_option-overlay" onClick={handleClose}></div>
             <div className="post_option-body"> 
-
+    
                 <form onSubmit={handleDelete} className="post_option-item">
                     <button className="post_option-item-btn" >
                         <div className="post_option-content" style={{color: '#ED4956'}}>Delete</div>

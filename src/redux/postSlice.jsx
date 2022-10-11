@@ -3,24 +3,28 @@ import { createSlice } from "@reduxjs/toolkit"
 export const postSlice = createSlice({
     name: 'post',
     initialState:{
-        posts: []
-        
+        posts: [],
+        isPending: false,
+        isError: false
     },
     reducers: {
         // createPostStart(state) {
-        //     state.posts.isPending = true
+        //     state.isPending = true
         //     state.posts.isError = false
         // },
         createPost(state, action){
-            // console.log(action.payload);
+            
             state.posts = [...state.posts, action.payload]
-            // state.posts.isPending = false
-            // state.posts.isError = false
+ 
         },
-        // createPostError(state) {
-        //     state.posts.isPending = false
-        //     state.posts.isError = true
-        // },
+        deleteStart(state) {
+            state.isPending = true
+            state.isError = false
+        },
+        deleteError(state) {
+            state.isPending = false
+            state.isError = true
+        },
         destroyPost(state, action){
             console.log(state.posts);
             state.posts = state.posts.filter( post => post._id !== action.payload )
@@ -29,5 +33,7 @@ export const postSlice = createSlice({
 
 }) 
 
-export const { createPostStart, createPost, destroyPost, createPostError } = postSlice.actions
+export const { 
+    createPostStart, createPost, createPostError,
+    deleteStart, destroyPost, deleteError } = postSlice.actions
 export default postSlice.reducer

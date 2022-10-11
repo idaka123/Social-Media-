@@ -1,7 +1,9 @@
 // import { useState } from 'react';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useContext } from 'react';
 import { useSelector } from 'react-redux';
+import { UserContext } from '../../App';
 
 import './User.css'
 import UserAbout from './UserAbout';
@@ -9,12 +11,15 @@ import UserAbout from './UserAbout';
 
 
 function Header(props) {
-    const { edit, setEdit ,setModalPost} = props
-    const user = useSelector(state => state.auth.login.currentUser)
-
+    const { edit, setEdit } = props
+    const { user} = useContext(UserContext)
+    const currentUser = useSelector(state => state.auth?.login?.currentUser)
+    let ownUser = true
+    if(currentUser?._id !== user._id) {
+      ownUser = false
+    }
     const handleClickEdit = () => {
           setEdit(!edit)
-          setModalPost(false)
     }
   return (
     <header>
@@ -38,7 +43,7 @@ function Header(props) {
           <div className="user-info">
             <div className="name">{user.info.name}</div>
             
-          {user.accessToken && <button className="edit-btn" onClick={handleClickEdit}>
+          {ownUser && <button className="edit-btn" onClick={handleClickEdit}>
               <FontAwesomeIcon className='edit-btn-icon' icon={faPenToSquare}/>
               Edit Profile
             </button>}

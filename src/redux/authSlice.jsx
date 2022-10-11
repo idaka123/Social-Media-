@@ -45,6 +45,8 @@ export const authSlice = createSlice({
         // login
         loginStart(state){
             state.login.isFetching = true
+            state.login.isError = false
+            state.login.isSuccess = false
         },
         loginError(state){
             state.login.isFetching = false
@@ -52,10 +54,10 @@ export const authSlice = createSlice({
             state.login.isSuccess = false
         },
         loginSuccess(state, action){
-            state.login.currentUser = action.payload
             state.login.isFetching = false
             state.login.isError = false
             state.login.isSuccess = true
+            state.login.currentUser = action.payload
         },
         // logOut
         logOutStart(state){
@@ -72,20 +74,6 @@ export const authSlice = createSlice({
             state.login.isError = false
             state.login.isSuccess = true
         },
-        // get User
-        getUserSuccess(state, action){
-            state.user.isFetching = false
-            state.user.isError = false
-            state.user.getUser = action.payload
-        },
-        getUserStart(state){
-            state.user.isFetching = true
-        },
-        getUserError(state){
-            state.user.isFetching = false
-            state.user.isError = true
-        },
-
         // update user info
         updateUserStart(state){
             state.login.isFetching = true

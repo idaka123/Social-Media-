@@ -1,13 +1,14 @@
 import { faHouse, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useContext } from 'react';
 import { useSelector } from 'react-redux';
+import { UserContext } from '../../App';
 
 
 import './User.css'
 
 const UserAbout = () => {
-    const user = useSelector(state => state.auth.login.currentUser)
-
+    const { user } = useContext(UserContext)
     return ( 
         <div className='user-about-box-wrapper'>
             <div className='user-about-box'>

@@ -5,7 +5,6 @@
     background-color: #fafafa;
     padding: 10px 16px;
     height: var(--header-bar-height);
-    letter-spacing: 3px;
     position: fixed;
     top: 0;
     left: 0;
@@ -13,7 +12,7 @@
     z-index: 99;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
-
+/* 
 .header_bar.logged{
     align-items: center;
     display: flex;
@@ -23,7 +22,7 @@
     height: 55px;
 
     
-}
+} */
 
 .header-logo{
     display: flex;
@@ -33,6 +32,7 @@
 }
 
 .header-logo-link{
+    letter-spacing: 3px;
     text-decoration: none;
     color: black;
     font-weight: bold;

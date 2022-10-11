@@ -26,15 +26,18 @@
 }
 
 .input_bar{
- height: 80%;
-    width: 100%;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    align-self: flex-end;
-    font-size: 15px;
-    padding: 10px;
-    background-color: transparent;
+ height: 100%;
+ /* top: 0; */
+ /* position: relative; */
+ width: 100%;
+ border: none;
+ outline: none;
+ border-radius: 10px;
+ align-self: flex-end;
+ font-size: 15px;
+ padding: 10px;
+ padding-top: 20px;
+ background-color: transparent;
 }
 
 .input_bar-placeholder{

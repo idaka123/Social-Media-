@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -6,10 +6,11 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import './edit.css'
 import { updateUserInfo } from '../../../redux/requestApi'
 import Input from '../../InputInfo/Input'
+import { UserContext } from '../../../App'
 
 function EditModal(props) {
   const { setEdit } = props
-  const user = useSelector((state) => state.auth.login.currentUser)
+  const { user } = useContext(UserContext)
   const [selectIdx, setSelectIdx] = useState('')
   const picColorRef = useRef()
   const dispatch = useDispatch()
