@@ -4,7 +4,7 @@ import { useState } from 'react';
 import EditModal from '../../Components/Modal/Edit/EditModal'
 import './Profile.css';
 import Header from '../../Components/UserInfo/UserHeader';
-import Posts from '../../Components/Posts/Posts';
+import Posts from '../../Components/CreatePosts/Posts';
 import ModalPost from '../../Components/Modal/Post/ModalPost';
 import NewFeed from '../../Components/NewFeed/NewFeed';
 

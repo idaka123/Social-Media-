@@ -119,12 +119,10 @@
     display: flex;
     background-color: white;
     background-color: #ffffff;
-    /* border: 1px solid; */
-    border: 1px solid rgb(203 183 183);
     border-radius: 10px;
     padding: 14px 16px;
     flex-direction: column;
-    box-shadow: 0px 0px 2px 0px grey;
+    box-shadow: rgb(17 17 26 / 5%) 0px 4px 16px, rgb(17 17 26 / 5%) 0px 8px 32px;
     
 }
 

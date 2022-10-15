@@ -36,9 +36,20 @@
     background-color: white;
 }
 
+.PubPost_header-name-wrapper {
+    padding-left: 10px;
+}
+
 .PubPost_header-name{
     font-weight: 600;
-    margin-left: 10px;
+
+}
+
+.PubPost_header-timer{
+    font-size: 13px;
+    font-weight: 100;
+    color: #b7b7b7;
+    letter-spacing: 0px;
 }
 
 .PubPost_header-option-icon{

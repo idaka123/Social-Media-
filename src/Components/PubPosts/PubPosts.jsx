@@ -16,6 +16,53 @@ const PubPost = (props) => {
     const [modalOption, setModalOption] = useState(false)
     const [heartClick, setHeartClick] = useState(false)
     const currentUser = useSelector(state => state.auth.login?.currentUser )
+
+        const date = post.createdAt.split('T')[0].split('-')
+        const time = post.createdAt.split('T')[1].split(':')
+        const today = new Date()
+        var timer
+        const postTime = {
+            year: Number(date[0]),
+            month: Number(date[1]),
+            date: Number(date[2]),
+            hour: Number(time[0]) + 7,
+            min: Number(time[1]),
+        }
+        const currentTime = {
+            year: today.getFullYear(),
+            month: today.getMonth()+1,
+            date: today.getDate(),
+            hour: today.getHours(),
+            min: today.getMinutes(),
+        }
+
+        if(postTime.year !== currentTime.year){
+            timer = `${currentTime.year - postTime.year} year`
+            
+        } 
+        else if(postTime.month !== currentTime.month){
+            timer =  `${currentTime.month - postTime.month} month`
+        } 
+        else if(postTime.date !== currentTime.date){
+            let tmp = currentTime.date - postTime.date
+            tmp > 1 ?  timer = `${currentTime.date - postTime.date} days`
+            :timer = `${currentTime.date - postTime.date} day`
+        }
+        else if(postTime.hour !== currentTime.hour){
+            let tmp = currentTime.hour - postTime.hour
+            tmp > 1 ?  timer = `${currentTime.hour - postTime.hour} hours`
+            :timer = `${currentTime.hour - postTime.hour} hour`
+        }
+        else if(postTime.min !== currentTime.min){
+            let tmp = currentTime.min - postTime.min
+            tmp > 1 ?  timer = `${currentTime.min - postTime.min} mins`
+            :timer = `${currentTime.min - postTime.min} min`
+        }
+        else {
+            timer = 'Just now'
+        }
+
+
     const handleOptionClick = () => {
         setModalOption(true)
     }
@@ -24,6 +71,17 @@ const PubPost = (props) => {
         setHeartClick(!heartClick)
     }
 
+
+
+    // const timer = () => {
+        
+    //     return result
+            
+    //     }
+    
+    // }
+    
+    
     return ( 
 
         <div className="PubPost" key={id}>
@@ -32,7 +90,10 @@ const PubPost = (props) => {
             <header className="PubPost_header">
                 <a href={`/Profile/${post?.userId}`} className="PubPost_header-user-info" >
                     <img className="PubPost_header-avatar" src={post?.avatarUrl} alt='avatar'/>
-                    <p className="PubPost_header-name">{post?.name}</p>
+                    <div className="PubPost_header-name-wrapper">
+                        <p className="PubPost_header-name">{post?.name}</p>
+                        <div className="PubPost_header-timer">{timer}</div>
+                    </div>
                 </a>
                 
             {currentUser?._id === post?.userId && 

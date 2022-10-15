@@ -21,16 +21,16 @@ const NewFeed = (props) => {
             })
         }
     }
-
     useEffect(() => {
         console.log('get posts');
         getPosts()
     }, []) 
 
     const newPostList = [...posts].reverse()
-
+   
     return (
         newPostList.map((post, idx) => {
+            
             return (
                 (id === post.userId || home) && <PubPost key={idx} id={post._id} post={post}/>
             )
