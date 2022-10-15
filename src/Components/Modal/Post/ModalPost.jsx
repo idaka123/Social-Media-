@@ -11,7 +11,7 @@ import { Post } from '../../../redux/requestApi'
 import { UserContext } from '../../../App'
 
 const ModalPost = (props) => { 
-    const { modalPost, setModalPost} = props
+    const { setModalPost} = props
     const [importImg, setImportImg] = useState(false)
     const { user} = useContext(UserContext)
     const userId = user?._id
@@ -30,7 +30,7 @@ const ModalPost = (props) => {
         setModalPost(false)
     }
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault()
         setModalPost(false)
         // console.log(postImg);
@@ -46,8 +46,8 @@ const ModalPost = (props) => {
 
         }
 
-        Post(dispatch, userId, newPost, formData)
-
+        await Post(dispatch, userId, newPost, formData)
+        await window.location.reload();
     }
 
 return (  
@@ -74,7 +74,6 @@ return (
                                     setPostImg={setPostImg}
                                     setImportImg={setImportImg} 
                                   />
-                    
                     }
                 </div>
 

@@ -32,3 +32,28 @@ a[href] {
   text-decoration: none;
   color: black
 }
+
+@media screen and (max-width: 600px) {
+  .home-posts{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home-posts{
+    width: 466px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .home-posts{
+    width: 466px;
+  }
+}
+
+/* PC */
+@media screen and (min-width: 1025px) {
+  .home-posts{
+    width: 466px;
+  }
+}

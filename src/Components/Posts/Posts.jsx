@@ -2,12 +2,11 @@
 // import { faImage } from '@fortawesome/free-regular-svg-icons'
 import { useSelector } from 'react-redux'
 import './post.css'
-import Avatar from '../Avatar/Avatar'
 import { useContext } from 'react'
 import { UserContext } from '../../App'
 
 const Posts = (props) => {
-    const { modalPost, setModalPost } = props
+    const { setModalPost } = props
     const { user } = useContext(UserContext)
     const currentUser = useSelector(state => state.auth.login?.currentUser)
     let ownUser = true
@@ -41,10 +40,10 @@ const Posts = (props) => {
 
                 </div>
                 {/* img input */}
-                <div className="posts-input-body">
+                {/* <div className="posts-input-body">
 
                    
-                </div>
+                </div> */}
 
             </div>}
 

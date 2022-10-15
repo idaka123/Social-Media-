@@ -6,43 +6,42 @@ import { faHeart as HeartClicked } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import PostOption from '../Modal/PostOption/PostOption';
+import { useSelector } from 'react-redux';
+
 
 
 
 const PubPost = (props) => {
-    const { idx, post} = props
+    const { id, post} = props
     const [modalOption, setModalOption] = useState(false)
     const [heartClick, setHeartClick] = useState(false)
-
-   
-    // const postData = useSelector(state => state.)
+    const currentUser = useSelector(state => state.auth.login?.currentUser )
     const handleOptionClick = () => {
-        // console.log(postId);
         setModalOption(true)
     }
     
     const handleHeartClick = () => {
         setHeartClick(!heartClick)
-        
     }
-    // console.log(post?.img?.data?.data);
-    const base64String = btoa(new Uint8Array(post?.img?.data?.data).reduce(function (data, byte) {
-        return data + String.fromCharCode(byte);
-    }, ''));
 
     return ( 
 
-        <div className="PubPost" key={idx}>
+        <div className="PubPost" key={id}>
 
         { modalOption && <PostOption post={post} setModalOption={setModalOption}/>}
             <header className="PubPost_header">
-                <a href={`/Profile/${post.userId}`} className="PubPost_header-user-info" >
-                    <img className="PubPost_header-avatar" src={post.avatarUrl} alt='avatar'/>
-                    <p className="PubPost_header-name">{post.name}</p>
+                <a href={`/Profile/${post?.userId}`} className="PubPost_header-user-info" >
+                    <img className="PubPost_header-avatar" src={post?.avatarUrl} alt='avatar'/>
+                    <p className="PubPost_header-name">{post?.name}</p>
                 </a>
                 
-                <FontAwesomeIcon className='PubPost_header-option-icon' icon={faEllipsis} onClick={handleOptionClick}/>
-
+            {currentUser?._id === post?.userId && 
+                <FontAwesomeIcon 
+                    className='PubPost_header-option-icon' 
+                    icon={faEllipsis} 
+                    onClick={handleOptionClick}
+                />
+            }
 
 
             </header>
@@ -57,7 +56,7 @@ const PubPost = (props) => {
                 }
 
             {/* <div className="PubPost_content"> */}
-              <img src={`data:image/png;base64,${base64String}`} alt="" className="PubPost_content-img" />
+              <img src={post.imgUrl} alt="" className="PubPost_content-img" />
             {/* </div> */}
 
             <div className='PubPost_footer'>

@@ -20,7 +20,7 @@ function App() {
   // const getUser = useSelector(state => state.auth.user?.getUser)
   const [logModal, setLogModal] = useState(false)
   const [registerModal, setRegisterModal] = useState(false)
-  const [modalPost, setModalPost] = useState(false)
+  
   const users = useSelector(state => state.user.allUser)
  
   
@@ -49,13 +49,12 @@ function App() {
 
           <Routes>
             <Route path='/'          
-              element={<Home modalPost={modalPost} setModalPost={setModalPost} users={users}/>} />
+              element={<Home users={users}/>} />
 
               {
                 users.map((user, idx) => {
                   const value = {
-                    user,
-                    modalPost
+                    user
                   }
 
                   return( 
@@ -64,7 +63,7 @@ function App() {
                       path={`/Profile/${user._id}`} 
                       element={
                                <UserContext.Provider value={value}>
-                                  <Profile modalPost={modalPost} setModalPost={setModalPost} />
+                                  <Profile id={user._id} />
                                </UserContext.Provider>
                               } 
                   />

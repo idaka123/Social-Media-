@@ -16,7 +16,7 @@ const cx = classNames.bind(styles)
 
 const SearchBar = () => {
     const storage = useSelector(state => state.user.storageSearch)
-    console.log('storage', storage);
+
     const [text, setText] = useState('')
     const [userItem, setUserItem ] = useState([])
     const [userStorage, setUserStorage] = useState(storage)

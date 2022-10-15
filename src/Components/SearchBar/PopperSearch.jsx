@@ -13,21 +13,21 @@ const PopperSearch = (props) => {
     const navigate = useNavigate()
 
     const handleClick = (user) => {
-        
         const newUser = {
             name: user.name || user.info.name,
             username: user.username,
             avatarUrl: user.avatarUrl || user.info.avatarUrl,
-            id: user._id
+            id: user._id || user.id
         }
+        // console.log(newUser);
         const check = userStorage.some(user => user.username === newUser.username)
-        console.log(check);
+
         if(!check){
             setUserStorage(prev => [...prev, newUser])
             storageSearchUser(dispatch, newUser, navigate)
         }
        
-        navigate(`/Profile/${user._id}`)
+        navigate(`/Profile/${user?._id || user?.id}`)
         setFocus(false)
     }
 
@@ -37,7 +37,7 @@ const PopperSearch = (props) => {
 
     }
     let newStorage = [...userStorage]
-    console.log(userItem)
+
     return ( 
         <div className={cx("popper_search")}>
             {

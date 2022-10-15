@@ -41,18 +41,7 @@ export const register = async (user, dispatch) => {
 }
 
 export const login = async (res, dispatch, navigate) => {
-    dispatch(loginStart())
-    console.log('logging');
-    try{
-       
         dispatch(loginSuccess(res.data))
-        console.log('logging success');
-        return true
-    }
-    catch{
-        dispatch(loginError())
-        console.log('username or password is not correct');
-    }
 }
 
 export const LogOut = async (dispatch, id, accessToken, navigate) => {
@@ -87,19 +76,17 @@ export const getUser = async (dispatch, id) => {
 export const Post = async (dispatch, userId, newPost, formData) => {
     // dispatch(createPostStart())
     try{
-    
-        const res = await axios.post('/post/createPost/'+ userId, newPost)
-
-        const resFile = await axios.post(`/file/upload/${userId}/${res.data._id}`,formData, {
+        
+        const resFile = await axios.post(`/file/upload/`,formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
         })
+        newPost = { ...newPost, imgUrl: resFile.data }
+        console.log(newPost);
+        const res = await axios.post('/post/createPost/'+ userId, newPost)
 
-        const newForm = {...res.data, ...resFile.data}
-        console.log(newForm);
-
-        await dispatch(createPost(newForm))
+        await dispatch(createPost(res.data))
     }
     catch{
         // dispatch(createPostError())

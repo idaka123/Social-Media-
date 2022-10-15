@@ -14,7 +14,7 @@ const LoginModal = (props) => {
     const {setLogModal, setRegisterModal} = props
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
-    const [state, setState] = useState(false)
+    const [state, setState] = useState(true)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     // const state = useSelector(state => state.auth.login)
@@ -28,19 +28,22 @@ const LoginModal = (props) => {
             password: password
         }
         await axios.post('/authem/login', newUser)
-        .then((res, error) => {
+        .then((res) => {
             setLogModal(false)
             login(res, dispatch, navigate)
-            setState(false)
+            setState(true)
         })
-        .catch()
+        .catch(err => {
+            setState(false)
+
+        })
 
 
     
         if(state) {
         
         }
-        console.log('set modal',state);
+
 
     }
 

@@ -3,15 +3,24 @@
     .home{
        
     }
+    .home-users{
+        display: none;
+    }
 }
 
 /* PC */
 @media screen and (min-width: 1025px) {
-    .home{
-        
-    }
+
     .home-users{
         margin-left: 32px;
+        height: auto;
+        align-self: flex-start;
+        padding: 10px;
+        /* background: radial-gradient(black, transparent); */
+        box-sizing: border-box;
+        border-radius: 10px;
+        box-shadow: rgb(17 17 26 / 5%) 0px 4px 16px, rgb(17 17 26 / 5%) 0px 8px 32px;
+
     }
     .home-users-title{
         color: rgb(142, 142, 142);
