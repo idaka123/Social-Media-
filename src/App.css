@@ -33,6 +33,24 @@ a[href] {
   color: black
 }
 
+
+@keyframes appear {
+  from {
+    transform:translateY(-500px);
+    opacity: 0 
+  }
+  to {
+    transform:translateY(0);
+    opacity: 1 
+  }
+}
+
+.home-posts{
+  
+  animation: appear .6s ease;
+}
+
+
 @media screen and (max-width: 600px) {
   .home-posts{
     width: 100%;

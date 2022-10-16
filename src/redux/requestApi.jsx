@@ -19,7 +19,7 @@ export const updateUserInfo = async (userUpdated, dispatch, id, accessToken) => 
     try{
         const res = await axios.post('/user/updateInfo/'+id, userUpdated,
         {
-            headers: { token: `Bearer ${accessToken}` }
+            cookies: { accessToken: accessToken }
         })
         dispatch(updateUserSuccess(res.data))
     }
@@ -51,8 +51,9 @@ export const LogOut = async (dispatch, id, accessToken, navigate) => {
         {
             headers: { token: `Bearer ${accessToken}` }
         })       
-        navigate('/')
+        
         dispatch(logOutSuccess())
+        window.location.reload()
     }
     catch{
         dispatch(logOutError())

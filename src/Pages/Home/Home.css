@@ -33,6 +33,23 @@
     
 }
 
+@keyframes appearFromDown {
+    from {
+      transform:translateY(500px);
+      opacity: 0 
+    }
+    to {
+      transform:translateY(0);
+      opacity: 1 
+    }
+  }
+  
+
+
+.home-users{
+    animation: appearFromDown .5s ease;
+}
+
 .home{
     display: flex;
     justify-content: center;

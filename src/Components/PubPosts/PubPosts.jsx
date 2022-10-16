@@ -1,12 +1,12 @@
  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 
 import './PubPosts.css'
-import { faComment, faFaceSmile, faHeart as Heart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as HeartClicked } from '@fortawesome/free-solid-svg-icons';
+import { faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import PostOption from '../Modal/PostOption/PostOption';
 import { useSelector } from 'react-redux';
+import PostContact from './PostContact/PostContact';
 
 
 
@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux';
 const PubPost = (props) => {
     const { id, post} = props
     const [modalOption, setModalOption] = useState(false)
-    const [heartClick, setHeartClick] = useState(false)
     const currentUser = useSelector(state => state.auth.login?.currentUser )
 
         const date = post.createdAt.split('T')[0].split('-')
@@ -67,21 +66,6 @@ const PubPost = (props) => {
         setModalOption(true)
     }
     
-    const handleHeartClick = () => {
-        setHeartClick(!heartClick)
-    }
-
-
-
-    // const timer = () => {
-        
-    //     return result
-            
-    //     }
-    
-    // }
-    
-    
     return ( 
 
         <div className="PubPost" key={id}>
@@ -103,52 +87,20 @@ const PubPost = (props) => {
                     onClick={handleOptionClick}
                 />
             }
-
-
             </header>
 
             {post.postText && 
-                
                 <div className="PubPost_footer-des-block">
                     <p className="PubPost_footer-des">
                         {post.postText}
                     </p>
                 </div>
                 }
-
-            {/* <div className="PubPost_content"> */}
               <img src={post.imgUrl} alt="" className="PubPost_content-img" />
-            {/* </div> */}
 
             <div className='PubPost_footer'>
-
-                <div className="PubPost_footer-icon-block">
-                    <FontAwesomeIcon 
-                        className={`PubPost_footer-icon heart ${heartClick && 'active'}`} 
-                        onClick={handleHeartClick} 
-                        icon={heartClick? HeartClicked : Heart} />
-                    {/* <i class="fa-solid fa-heart"></i> */}
-                    <FontAwesomeIcon className="PubPost_footer-icon comment" icon={faComment} />
-                    {/* <FontAwesomeIcon className="PubPost_footer-icon-heart" icon={faHeart} /> */}
-                </div>
-
-                
-
-                <div className="PubPost_footer-comment-block-wrapper">
-                    <div className="PubPost_footer-comment-block">
-                        <FontAwesomeIcon className='PubPost_footer-comment-icon' icon={faFaceSmile}/>
-
-                            <input type="text" placeholder='Add comment here...' className="PubPost_footer-comment-input" />
-
-                        <button className="PubPost_footer-comment-btn">Post</button>
-                    </div>
-
-                </div>
-
-               
-              
-               
-
+                    <PostContact post={post}/>
+             
             </div>
 
 

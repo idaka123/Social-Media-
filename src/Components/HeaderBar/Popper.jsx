@@ -16,10 +16,10 @@ const Popper = (props) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const handleLogOut = (e) => {
+    const handleLogOut = async (e) => {
         e.preventDefault()
-
         LogOut(dispatch, id, accessToken, navigate)
+        
     }
 
     // const handleClickOutside = (e) => {

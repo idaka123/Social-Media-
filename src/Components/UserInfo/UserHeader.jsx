@@ -14,6 +14,7 @@ function Header(props) {
     const { edit, setEdit } = props
     const { user} = useContext(UserContext)
     const currentUser = useSelector(state => state.auth?.login?.currentUser)
+    console.log(currentUser);
     let ownUser = true
     if(currentUser?._id !== user._id) {
       ownUser = false

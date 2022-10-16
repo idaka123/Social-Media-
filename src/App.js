@@ -23,11 +23,6 @@ function App() {
   
   const users = useSelector(state => state.user.allUser)
  
-  
-  
-
-
-
   return (
    <Router> 
 

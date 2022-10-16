@@ -115,6 +115,7 @@
     cursor: pointer;
     padding: 8px 10px;
     position: relative;
+    transition: background-color ease-in-out 200ms;
 
     &:first-child{
         border-top-left-radius: 10px;

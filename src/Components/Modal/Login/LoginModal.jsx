@@ -11,15 +11,12 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const LoginModal = (props) => {
-    const {setLogModal, setRegisterModal} = props
+    const {setLogModal} = props
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [state, setState] = useState(true)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    // const state = useSelector(state => state.auth.login)
-    // const AuthemModal = createContext()
-    // const setLogModal = useContext(AuthemModal)
 
     const handleSubmitLog = async (e) => {
         e.preventDefault()
@@ -29,21 +26,15 @@ const LoginModal = (props) => {
         }
         await axios.post('/authem/login', newUser)
         .then((res) => {
-            setLogModal(false)
+            // setLogModal(false)
             login(res, dispatch, navigate)
             setState(true)
         })
+        .then(() => { window.location.reload() })
         .catch(err => {
             setState(false)
 
         })
-
-
-    
-        if(state) {
-        
-        }
-
 
     }
 

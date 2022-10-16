@@ -60,6 +60,7 @@ function EditModal(props) {
       avatarUrl: avaUrl,
       theme: theme,
     }
+    
     if(user?.accessToken){
       updateUserInfo(userUpdated, dispatch, user?._id, user?.accessToken)
     }
